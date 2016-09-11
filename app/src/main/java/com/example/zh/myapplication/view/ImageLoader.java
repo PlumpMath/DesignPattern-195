@@ -22,11 +22,11 @@ public class ImageLoader {
 
 
     public void displayImage(final String url, final ImageView imageView) {
-
         if (mImageCache.get(url) != null) {
             imageView.setImageBitmap(mImageCache.get(url));
             return;
         }
+        //line
 
         imageView.setTag(url);
         mExecutorService.submit(new Runnable() {
