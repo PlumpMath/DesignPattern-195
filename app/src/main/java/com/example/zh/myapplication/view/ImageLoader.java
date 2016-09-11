@@ -2,7 +2,6 @@ package com.example.zh.myapplication.view;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.LruCache;
 import android.widget.ImageView;
 
 import com.example.zh.myapplication.interfa.ImageloaderInter;
@@ -13,9 +12,7 @@ import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-/**
- * Created by zh on 2016/9/1.
- */
+
 public class ImageLoader {
     ImageloaderInter mImageCache;
     ExecutorService mExecutorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
@@ -27,6 +24,10 @@ public class ImageLoader {
             return;
         }
         //line
+
+        //again
+
+        //third add
 
         imageView.setTag(url);
         mExecutorService.submit(new Runnable() {
