@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.zh.myapplication.interfa.ImageloaderInter;
+import com.example.zh.myapplication.view.DiskCache;
+import com.example.zh.myapplication.view.DoubleCache;
 import com.example.zh.myapplication.view.ImageLoader;
 import com.example.zh.myapplication.view.MemoryCache;
 
@@ -31,7 +34,24 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 ImageLoader imageLoader = new ImageLoader();
+                //内存缓存
                 imageLoader.setImageCacheType(new MemoryCache());
+                //本地缓存
+                imageLoader.setImageCacheType(new DiskCache());
+                //双缓存
+                imageLoader.setImageCacheType(new DoubleCache());
+                //自定义缓存
+                imageLoader.setImageCacheType(new ImageloaderInter() {
+                    @Override
+                    public Bitmap get(String url) {
+                        return null;
+                    }
+
+                    @Override
+                    public void put(String url, Bitmap bitmap) {
+
+                    }
+                });
                 String url = "http://imgsrc.baidu.com/forum/pic/item/d7265e380cd791230540dad9ab345982b3b78025.jpg";
                 imageLoader.displayImage(url, my_show);
             }

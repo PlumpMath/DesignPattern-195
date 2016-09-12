@@ -12,22 +12,15 @@ import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-
 public class ImageLoader {
-    ImageloaderInter mImageCache;
+    ImageloaderInter mImageCache = new MemoryCache();
     ExecutorService mExecutorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-
 
     public void displayImage(final String url, final ImageView imageView) {
         if (mImageCache.get(url) != null) {
             imageView.setImageBitmap(mImageCache.get(url));
             return;
         }
-        //line
-
-        //again
-
-        //third add
 
         imageView.setTag(url);
         mExecutorService.submit(new Runnable() {
@@ -46,6 +39,7 @@ public class ImageLoader {
 
     }
 
+
     public Bitmap downloadImage(String url) {
         Bitmap bitmap = null;
         try {
@@ -59,6 +53,7 @@ public class ImageLoader {
         return bitmap;
     }
 
+    //实现缓存注入
     public void setImageCacheType(ImageloaderInter cacheType) {
         mImageCache = cacheType;
     }
